@@ -12,7 +12,7 @@ user="bodzio"
 passwd="bodzio123"
 db="Gospodarstwo"
 
-Test
+Test123
 
 def pobranie_danych_db_k(host,user,passwd,db):
     try:
