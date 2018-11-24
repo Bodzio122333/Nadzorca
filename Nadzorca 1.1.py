@@ -12,6 +12,8 @@ user="bodzio"
 passwd="bodzio123"
 db="Gospodarstwo"
 
+Test
+
 def pobranie_danych_db_k(host,user,passwd,db):
     try:
         conn = _mysql.connect(host, user, passwd, db)
