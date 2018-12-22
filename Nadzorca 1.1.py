@@ -7,6 +7,8 @@ from tkinter import font
 import _mysql
 import sys
 # from tkinter.ttk import *
+from tkinter.ttk import Combobox
+
 host="192.168.1.190"
 user="bodzio"
 passwd="bodzio123"
@@ -55,6 +57,7 @@ def p1():
     # print(geo)
     # Ukryj pasek przeciągania i przycisk zamykania okna głównego
     root.overrideredirect(True)
+    root.attributes('-topmost', True)
     # Ustaw okno główne zawsze na wierzchu
     # root.wm_attributes("- topmost", True)
     # Wyłącz cień okna
@@ -84,6 +87,7 @@ def p1():
 def button_konie(root, screen_width, screen_height):
     root.destroy()
     k_list=pobranie_danych_db_k(host, user, passwd, db)
+
     okno_k = Tk()
     k_tab1 = PhotoImage(file="ikony\\k_tab1.png")
     k_tab2 = PhotoImage(file="ikony\\k_tab2.png")
@@ -125,70 +129,70 @@ def button_konie(root, screen_width, screen_height):
     #     ('Walter', 'White', 'PL1234567887866768678868', '19-12-1992', '5,4'),
     #     ('Fred', 'Becker','PL1234567887866768678868', '19-12-1992', '10'),
     #     ('John', 'Smith', 'PL1234567887866768678868', '19-12-1992', '20'),
-    #     # ('Larry', 'Black', 'PL1234567887866768678868'),
-    #     # ('Walter', 'White', 'PL1234567887866768678868'),
-    #     # ('Fred', 'Becker', 'PL1234567887866768678868'),
-    #     # ('John', 'Smith', 'PL1234567887866768678868'),
-    #     # ('Larry', 'Black', 'PL1234567887866768678868'),
-    #     # ('Walter', 'White', 'PL1234567887866768678868'),
-    #     # ('Fred', 'Becker', 'PL1234567887866768678868'),
-    #     # ('Larry', 'Black', 'PL1234567887866768678868'),
-    #     # ('Walter', 'White', 'PL1234567887866768678868'),
-    #     # ('Fred', 'Becker', 'PL1234567887866768678868'),
-    #     # ('John', 'Smith', 'PL1234567887866768678868'),
-    #     # ('Larry', 'Black', 'PL1234567887866768678868'),
-    #     # ('Walter', 'White', 'PL1234567887866768678868'),
-    #     # ('Fred', 'Becker', 'PL1234567887866768678868'),
-    #     # ('John', 'Smith', 'PL1234567887866768678868'),
-    #     # ('Larry', 'Black', 'PL1234567887866768678868'),
-    #     # ('Walter', 'White', 'PL1234567887866768678868'),
-    #     # ('Fred', 'Becker', 'PL1234567887866768678868'),
-    #     # ('Larry', 'Black', 'PL1234567887866768678868'),
-    #     # ('Walter', 'White', 'PL1234567887866768678868'),
-    #     # ('Fred', 'Becker', 'PL1234567887866768678868'),
-    #     # ('John', 'Smith', 'PL1234567887866768678868'),
-    #     # ('Larry', 'Black', 'PL1234567887866768678868'),
-    #     # ('Walter', 'White', 'PL1234567887866768678868'),
-    #     # ('Fred', 'Becker', 'PL1234567887866768678868'),
-    #     # ('John', 'Smith', 'PL1234567887866768678868'),
-    #     # ('Larry', 'Black', 'PL1234567887866768678868'),
-    #     # ('Walter', 'White', 'PL1234567887866768678868'),
-    #     # ('Fred', 'Becker', 'PL1234567887866768678868'),
-    #     # ('Larry', 'Black', 'PL1234567887866768678868'),
-    #     # ('Walter', 'White', 'PL1234567887866768678868'),
-    #     # ('Fred', 'Becker', 'PL1234567887866768678868'),
-    #     # ('John', 'Smith', 'PL1234567887866768678868'),
-    #     # ('Larry', 'Black', 'PL1234567887866768678868'),
-    #     # ('Walter', 'White', 'PL1234567887866768678868'),
-    #     # ('Fred', 'Becker', 'PL1234567887866768678868'),
-    #     # ('John', 'Smith', 'PL1234567887866768678868'),
-    #     # ('Larry', 'Black', 'PL1234567887866768678868'),
-    #     # ('Walter', 'White', 'PL1234567887866768678868'),
-    #     # ('Fred', 'Becker', 'PL1234567887866768678868'),
-    #     # ('Larry', 'Black', 'PL1234567887866768678868'),
-    #     # ('Walter', 'White', 'PL1234567887866768678868'),
-    #     # ('Fred', 'Becker', 'PL1234567887866768678868'),
-    #     # ('John', 'Smith', 'PL1234567887866768678868'),
-    #     # ('Larry', 'Black', 'PL1234567887866768678868'),
-    #     # ('Walter', 'White', 'PL1234567887866768678868'),
-    #     # ('Fred', 'Becker', 'PL1234567887866768678868'),
-    #     # ('John', 'Smith', 'PL1234567887866768678868'),
-    #     # ('Larry', 'Black', 'PL1234567887866768678868'),
-    #     # ('Walter', 'White', 'PL1234567887866768678868'),
-    #     # ('Fred', 'Becker', 'PL1234567887866768678868'),
-    #     # ('Larry', 'Black', 'PL1234567887866768678868'),
-    #     # ('Walter', 'White', 'PL1234567887866768678868'),
-    #     # ('Fred', 'Becker', 'PL1234567887866768678868'),
-    #     # ('John', 'Smith', 'PL1234567887866768678868'),
-    #     # ('Larry', 'Black', 'PL1234567887866768678868'),
-    #     # ('Walter', 'White', 'PL1234567887866768678868'),
-    #     # ('Fred', 'Becker', 'PL1234567887866768678868'),
-    #     # ('John', 'Smith', 'PL1234567887866768678868'),
-    #     # ('Larry', 'Black', 'PL1234567887866768678868'),
-    #     # ('Walter', 'White', 'PL1234567887866768678868'),
-    #     # ('Fred', 'Becker', 'PL1234567887866768678868'),
+        # ('Larry', 'Black', 'PL1234567887866768678868'),
+        # ('Walter', 'White', 'PL1234567887866768678868'),
+        # ('Fred', 'Becker', 'PL1234567887866768678868'),
+        # ('John', 'Smith', 'PL1234567887866768678868'),
+        # ('Larry', 'Black', 'PL1234567887866768678868'),
+        # ('Walter', 'White', 'PL1234567887866768678868'),
+        # ('Fred', 'Becker', 'PL1234567887866768678868'),
+        # ('Larry', 'Black', 'PL1234567887866768678868'),
+        # ('Walter', 'White', 'PL1234567887866768678868'),
+        # ('Fred', 'Becker', 'PL1234567887866768678868'),
+        # ('John', 'Smith', 'PL1234567887866768678868'),
+        # ('Larry', 'Black', 'PL1234567887866768678868'),
+        # ('Walter', 'White', 'PL1234567887866768678868'),
+        # ('Fred', 'Becker', 'PL1234567887866768678868'),
+        # ('John', 'Smith', 'PL1234567887866768678868'),
+        # ('Larry', 'Black', 'PL1234567887866768678868'),
+        # ('Walter', 'White', 'PL1234567887866768678868'),
+        # ('Fred', 'Becker', 'PL1234567887866768678868'),
+        # ('Larry', 'Black', 'PL1234567887866768678868'),
+        # ('Walter', 'White', 'PL1234567887866768678868'),
+        # ('Fred', 'Becker', 'PL1234567887866768678868'),
+        # ('John', 'Smith', 'PL1234567887866768678868'),
+        # ('Larry', 'Black', 'PL1234567887866768678868'),
+        # ('Walter', 'White', 'PL1234567887866768678868'),
+        # ('Fred', 'Becker', 'PL1234567887866768678868'),
+        # ('John', 'Smith', 'PL1234567887866768678868'),
+        # ('Larry', 'Black', 'PL1234567887866768678868'),
+        # ('Walter', 'White', 'PL1234567887866768678868'),
+        # ('Fred', 'Becker', 'PL1234567887866768678868'),
+        # ('Larry', 'Black', 'PL1234567887866768678868'),
+        # ('Walter', 'White', 'PL1234567887866768678868'),
+        # ('Fred', 'Becker', 'PL1234567887866768678868'),
+        # ('John', 'Smith', 'PL1234567887866768678868'),
+        # ('Larry', 'Black', 'PL1234567887866768678868'),
+        # ('Walter', 'White', 'PL1234567887866768678868'),
+        # ('Fred', 'Becker', 'PL1234567887866768678868'),
+        # ('John', 'Smith', 'PL1234567887866768678868'),
+        # ('Larry', 'Black', 'PL1234567887866768678868'),
+        # ('Walter', 'White', 'PL1234567887866768678868'),
+        # ('Fred', 'Becker', 'PL1234567887866768678868'),
+        # ('Larry', 'Black', 'PL1234567887866768678868'),
+        # ('Walter', 'White', 'PL1234567887866768678868'),
+        # ('Fred', 'Becker', 'PL1234567887866768678868'),
+        # ('John', 'Smith', 'PL1234567887866768678868'),
+        # ('Larry', 'Black', 'PL1234567887866768678868'),
+        # ('Walter', 'White', 'PL1234567887866768678868'),
+        # ('Fred', 'Becker', 'PL1234567887866768678868'),
+        # ('John', 'Smith', 'PL1234567887866768678868'),
+        # ('Larry', 'Black', 'PL1234567887866768678868'),
+        # ('Walter', 'White', 'PL1234567887866768678868'),
+        # ('Fred', 'Becker', 'PL1234567887866768678868'),
+        # ('Larry', 'Black', 'PL1234567887866768678868'),
+        # ('Walter', 'White', 'PL1234567887866768678868'),
+        # ('Fred', 'Becker', 'PL1234567887866768678868'),
+        # ('John', 'Smith', 'PL1234567887866768678868'),
+        # ('Larry', 'Black', 'PL1234567887866768678868'),
+        # ('Walter', 'White', 'PL1234567887866768678868'),
+        # ('Fred', 'Becker', 'PL1234567887866768678868'),
+        # ('John', 'Smith', 'PL1234567887866768678868'),
+        # ('Larry', 'Black', 'PL1234567887866768678868'),
+        # ('Walter', 'White', 'PL1234567887866768678868'),
+        # ('Fred', 'Becker', 'PL1234567887866768678868'),
     # ]
-    # print(k_list)
+    print(k_list)
     tree = ttk.Treeview(tab1, columns=('col1', 'col2', 'col3', 'col4', 'col5'), show="headings", height=22)
 
 
@@ -233,7 +237,70 @@ def button_konie(root, screen_width, screen_height):
 def Dodaj_button_k():
 
     print("dodaje do db dane")
-    messagebox.showinfo('Dodaj', 'Tu bedzie GUI dodania konia')
+    # messagebox.showinfo('Dodaj', 'Tu bedzie GUI dodania konia')
+    okno_dodaj_k = Tk()
+    okno_dodaj_k.iconbitmap("ikony\\ikona.ico")
+    screen_width = okno_dodaj_k.winfo_screenwidth()
+    screen_height = okno_dodaj_k.winfo_screenheight()
+    screen_width1 = screen_width/2 -125
+    screen_height1 = screen_height/2 -125
+    geo = "300x400+"+str(int(screen_width1))+"+"+ str(int(screen_height1))
+    okno_dodaj_k.geometry(geo)
+    # okno_dodaj_k.attributes('-topmost', True)
+    napis_NR = LabelFrame(okno_dodaj_k, text="DODAJ KONIA")
+    napis_NR.pack(fill="both", expand="yes")
+    okno_dodaj_k.title("Nadzorca")
+    L1= Label(napis_NR, text="Imie konia ")
+    L1.grid(row=0, column=0,sticky=W+E+N+S)
+    E1= Entry(napis_NR)
+    E1.grid(row=0, column=1,sticky=W+E+N+S)
+    L2= Label(napis_NR, text="Data przybycia ")
+    L2.grid(row=1, column=0, sticky=W+E+N+S)
+    E2= Entry(napis_NR)
+    E2.insert(END,"RRRR-mm-dd")
+    E2.grid(row=1, column=1,sticky=W+E+N+S)
+    L3= Label(napis_NR, text="Rasa ")
+    L3.grid(row=2, column=0, sticky=W+E+N+S)
+    E3= Entry(napis_NR)
+    E3.grid(row=2, column=1,sticky=W+E+N+S)
+    L4= Label(napis_NR, text="Data urodzenia ")
+    L4.grid(row=3, column=0, sticky=W+E+N+S)
+    E4= Entry(napis_NR)
+    E4.insert(END,"RRRR-mm-dd")
+    E4.grid(row=3, column=1,sticky=W+E+N+S)
+    L5= Label(napis_NR, text="Numer chipa ")
+    L5.grid(row=4, column=0, sticky=W+E+N+S)
+    E5= Entry(napis_NR)
+    E5.grid(row=4, column=1,sticky=W+E+N+S)
+    L6= Label(napis_NR, text="Ojciec ")
+    L6.grid(row=5, column=0, sticky=W+E+N+S)
+    E6= Entry(napis_NR)
+    E6.grid(row=5, column=1,sticky=W+E+N+S)
+    L7= Label(napis_NR, text="Matka ")
+    L7.grid(row=6, column=0, sticky=W+E+N+S)
+    E7= Entry(napis_NR)
+    E7.grid(row=6, column=1,sticky=W+E+N+S)
+    L8 = Label(napis_NR, text="Plec ")
+    L8.grid(row=7, column=0, sticky=W + E + N + S)
+    S1= Combobox(napis_NR)
+    S1['values'] = ("Klacz", "Ogier", "Walach")
+    S1.current(0)  # ustawienie co ma być wartością domyślną
+    S1.grid(row=7, column=1, sticky=W + E + N + S)
+    L9= Label(napis_NR, text="Ilosc potomstwa ")
+    L9.grid(row=8, column=0, sticky=W+E+N+S)
+    E9= Entry(napis_NR)
+    E9.insert(END, "0")
+    E9.grid(row=8, column=1,sticky=W+E+N+S)
+    L10= Label(napis_NR, text="Numer Trackera ")
+    L10.grid(row=9, column=0, sticky=W+E+N+S)
+    E10= Entry(napis_NR)
+    E10.grid(row=9, column=1,sticky=W+E+N+S)
+    L11= Label(napis_NR, text="Ostatnie odrobaczanie ")
+    L11.grid(row=10, column=0, sticky=W+E+N+S)
+    E11= Entry(napis_NR)
+    E11.grid(row=10, column=1,sticky=W+E+N+S)
+    E11.insert(END, "RRRR-mm-dd")
+    okno_dodaj_k.mainloop()
 
 def Usun_button_k():
 
