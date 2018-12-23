@@ -19,7 +19,7 @@ def pobranie_danych_db_k(host,user,passwd,db):
     try:
         conn = _mysql.connect(host, user, passwd, db)
 
-        conn.query("SELECT * FROM Konie")
+        conn.query("SELECT * FROM Konie WHERE Archiwum = 0")
         result = conn.use_result()
         row = result.fetch_row()
         k_list=[]
@@ -238,13 +238,48 @@ def Dodaj_button_k():
 
     print("dodaje do db dane")
     # messagebox.showinfo('Dodaj', 'Tu bedzie GUI dodania konia')
+    def SQL_dodaj_konia():
+        print('Dodaje konia!!!')
+        imie_k = E1.get()
+        dp_k = E2.get()
+        rasa_k = E3.get()
+        du_k = E4.get()
+        nch_k = E5.get()
+        o_k = E6.get()
+        m_k = E7.get()
+        pl_k = S1.get()
+        ip_k = E9.get()
+        nt_k = E10.get()
+        # oo_k = E11.get()
+        query_dodaj ="INSERT INTO `Konie`(`id`, `Imie`, `Rasa`, `Data_urodzenia`, `Numer_chipa`, `Ojciec`, `Matka`, `Plec`, `Ilosc_potomstwa`,`Numer_trackera`, `Wiek`, `Ostatnie_odrobaczanie`, `Ostatni_mesz`, `Data_przybycia`, `Archiwum`)"
+        query_dodaj = query_dodaj + "VALUES(NULL, '"+imie_k+"', '"+rasa_k+"', '"+du_k+"', '"+nch_k+"', '"+o_k+"', '"+m_k+"', '"+pl_k+"', '"+ip_k+"', '"+nt_k+"''', '', NULL, NULL,'"+dp_k+"', '0')"
+        print(query_dodaj)
+
+        try:
+            conn = _mysql.connect(host, user, passwd, db)
+            conn.query(query_dodaj)
+        except:
+            print("problem z DB SQL")
+
+        finally:
+            if conn:
+                conn.close()
+
+    # INSERT
+    # INTO
+    # `Konie`(`id`, `Imie`, `Rasa`, `Data_urodzenia`, `Numer_chipa`, `Ojciec`, `Matka`, `Plec`, `Ilosc_potomstwa`,
+    #         `Numer_trackera`, `Wiek`, `Ostatnie_odrobaczanie`, `Ostatni_mesz`, `Data_przybycia`, `Archiwum`)
+    # VALUES(NULL, 'pucek', 'zajebista', '2018-12-03', '12345', 'dupek', 'algida', 'Klacz', '0', '123456', '', NULL, NULL,
+    #        '2018-12-04', '0');
+
+
     okno_dodaj_k = Tk()
     okno_dodaj_k.iconbitmap("ikony\\ikona.ico")
     screen_width = okno_dodaj_k.winfo_screenwidth()
     screen_height = okno_dodaj_k.winfo_screenheight()
     screen_width1 = screen_width/2 -125
     screen_height1 = screen_height/2 -125
-    geo = "300x400+"+str(int(screen_width1))+"+"+ str(int(screen_height1))
+    geo = "300x310+"+str(int(screen_width1))+"+"+ str(int(screen_height1))
     okno_dodaj_k.geometry(geo)
     # okno_dodaj_k.attributes('-topmost', True)
     napis_NR = LabelFrame(okno_dodaj_k, text="DODAJ KONIA")
@@ -295,11 +330,15 @@ def Dodaj_button_k():
     L10.grid(row=9, column=0, sticky=W+E+N+S)
     E10= Entry(napis_NR)
     E10.grid(row=9, column=1,sticky=W+E+N+S)
-    L11= Label(napis_NR, text="Ostatnie odrobaczanie ")
-    L11.grid(row=10, column=0, sticky=W+E+N+S)
-    E11= Entry(napis_NR)
-    E11.grid(row=10, column=1,sticky=W+E+N+S)
-    E11.insert(END, "RRRR-mm-dd")
+    # L11= Label(napis_NR, text="Ostatnie odrobaczanie ")
+    # L11.grid(row=10, column=0, sticky=W+E+N+S)
+    # E11= Entry(napis_NR)
+    # E11.grid(row=10, column=1,sticky=W+E+N+S)
+    # E11.insert(END, "RRRR-mm-dd")
+    L11= Label(napis_NR, text=" ")
+    L11.grid(row=11, column=0, sticky=W+E+N+S)
+    Button_Dodaj = Button(napis_NR, text='Dodaj', command=SQL_dodaj_konia)
+    Button_Dodaj.grid(row=12, column=1,sticky=W+E+N+S)
     okno_dodaj_k.mainloop()
 
 def Usun_button_k():
