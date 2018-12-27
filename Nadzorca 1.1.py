@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 from tkinter import *
 from tkinter import ttk
@@ -220,21 +221,26 @@ def button_konie(root, screen_width, screen_height):
     tree.bind("<Double-1>", onDBClick)
 
     tree.pack(anchor='nw')
-    Button_1 = Button(tab1, text='Dodaj', command=Dodaj_button_k)
+    Button_1 = Button(tab1, text='Dodaj', command=lambda : Dodaj_button_k (okno_k, screen_width, screen_height))
     Button_1.place(x=680, y=10, height=40,width=90)
     Button_2 = Button(tab1, text='Usuń', command=Usun_button_k)
     Button_2.place(x=680, y=80, height=40,width=90)
-    Button_2 = Button(tab1, text='Edytuj', command=Edytuj_button_k)
-    Button_2.place(x=680, y=150, height=40,width=90)
-    # Button_1.pack(anchor='ne')
+    Button_3 = Button(tab1, text='Edytuj', command=Edytuj_button_k)
+    Button_3.place(x=680, y=150, height=40,width=90)
+
 
     tresc2 = Label(tab2, text= 'opis 2', padx=65, pady=40)
     tresc2.grid(column=0, row=0)
     zakladki.pack(expand=1, fill='both')
-    # db_pobieranie_danych_k(host, user, passwd, db)
     okno_k.mainloop()
 
-def Dodaj_button_k():
+
+
+
+
+
+
+def Dodaj_button_k(okno_k, screen_width, screen_height ):
 
     print("dodaje do db dane")
     # messagebox.showinfo('Dodaj', 'Tu bedzie GUI dodania konia')
@@ -258,12 +264,30 @@ def Dodaj_button_k():
         try:
             conn = _mysql.connect(host, user, passwd, db)
             conn.query(query_dodaj)
+            messagebox.showinfo('Informacja', 'Poprawnie dodano konia')
         except:
             print("problem z DB SQL")
+            messagebox.showinfo('Informacja', 'Blad dodania do bazy SQL')
 
         finally:
             if conn:
                 conn.close()
+            okno_dodaj_k.destroy()
+            button_konie(okno_k, screen_width, screen_height)
+            # okno_k.destroy()
+
+
+
+
+            # python = sys.executable
+            # os.execl(python, python, *sys.argv)
+
+
+
+
+
+
+
 
     # INSERT
     # INTO
@@ -340,6 +364,7 @@ def Dodaj_button_k():
     Button_Dodaj = Button(napis_NR, text='Dodaj', command=SQL_dodaj_konia)
     Button_Dodaj.grid(row=12, column=1,sticky=W+E+N+S)
     okno_dodaj_k.mainloop()
+
 
 def Usun_button_k():
 
